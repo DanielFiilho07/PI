@@ -1,0 +1,62 @@
+<%- include('partials/header') %>
+  <main>
+    <aside>
+      <form class="form_buscaServico" action="/servicos" method="GET">
+        <label class="label_buscaServico" for="Estado">Estado:</label>
+        <select id="estado" name="estado">
+        <option value="" selected></option>;
+        <% cidadesEstados.forEach(estado=> { %>
+          <option value="<%= estado.sigla %>">
+            <%= estado.nome %>
+          </option>
+          <% }) %>
+      </select>
+      <label class="label_buscaServico" for="cidade">Cidade:</label> 
+      <select id="cidade" name="cidade">
+      </select>
+      <div>
+        <button type="submit" class="botao_dashboard">Filtrar</button>
+      </div>
+    </form>
+    </aside>
+
+
+    <section class="painel-principal">
+      <h2 class="label_painel-principal">Motorista em sua região</h2>
+    </section>
+
+    <div class="container_botoes">
+      <button class="botao_dashboard"><a href="/clientes/perfilCliente" id="meu_perfil">MEU PERFIL</a></button>
+    </div>
+
+    <section class="painel_motoristas">
+      <% servicos.forEach(servico=> { %>
+        <div>
+          <img class="avatar-veiculo" src="/images/profile/<%= servico.foto_motorista %>" alt="">
+          <h4>
+            <%= servico.tipo_viagem %>
+          </h4>
+          <h4>
+            <%= servico.auto_descricao %>
+          </h4>
+          <h4>
+            Preço/km: <%= servico.preco %>
+          </h4>
+          <div>
+          <a href="/servicos/detalhe/<%= servico.id_servico %>" class="botao_dashboard" >VER
+           </a>     
+          </div>
+        </div>
+        <% }) %>
+          
+    </section>
+
+    <%- include('partials/popup') %>
+
+  </main>
+  <script src="/javascript/motoristas.js"></script>
+  <script>
+    iniciarEstadosCidades(<%- JSON.stringify(cidadesEstados) %>);
+  </script>
+
+  <%- include('partials/footer') %>

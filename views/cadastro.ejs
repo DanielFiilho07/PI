@@ -1,0 +1,100 @@
+<%- include('partials/header')  %>
+<!--inicio do Dashboard do motorista, dados pessoais -->
+<section>
+
+    <div class="container_titulo">
+       <h1 class="sub_titulo">CADASTRO</h1>
+       <p class="description_dashboard">Precisamos de algumas informações para oferecermos as melhores opções para você.</p>
+    </div>
+    <div class="description_dashboard">
+        <% if (errors.length) { %>
+            <% errors.forEach(error => { %>
+               <li>
+                <%= error.param %>: <%= error.msg %> 
+               </li>
+            <% }) %>
+        <% } %>
+    </div>
+    <form class="form_dashboard" action="/clientes/create"  method="POST"> 
+    <h3 class="sub_titulo">DADOS PESSOAIS</h3> 
+        <div>
+            <label class="label_dashboard" for="nome">Nome:</label> 
+            <input class="input_dashboard" type="text"name="nome" id="nome" placeholder="digite o seu nome" >
+        </div>
+        <div>
+            <label class="label_dashboard" for="sobrenome">Sobrenome:</label> 
+            <input class="input_dashboard" type="text"name="sobrenome" id="sobrenome" placeholder="digite o seu sobrenome" >
+        </div>
+        <div>
+            <label class="label_dashboard" for="email">Email:</label> 
+            <input class="input_dashboard" type="text"name="email" id="email" placeholder="digite o seu email" >
+        </div>
+        <div>
+            <label class="label_dashboard" for="senha">Senha:</label> 
+            <input class="input_dashboard" type="password"name="senha" id="senha" placeholder="digite o seu senha" >
+        </div>
+        <div>
+            <label class="label_dashboard" for="confirmarSenha">Confirmar senha:</label> 
+            <input class="input_dashboard" type="password"name="confirmarSenha" id="confirmarSenha" placeholder="digite o seu confirme sua senha" >
+        </div>
+        <div>
+            <label class="label_dashboard" for="cpf">CPF:</label> 
+            <input class="input_dashboard" type="number"name="cpf" id="cpf" placeholder="digite o CPF, apenas números" >
+        </div>
+        <div>
+            <label class="label_dashboard" for="cnh">CNH:</label> 
+            <input class="input_dashboard" type="number"name="cnh" id="cnh" placeholder="digite o número da sua CNH"  >
+        </div>
+        <div>
+            <label class="label_dashboard" for="categoria">Categoria da sua CNH:</label> 
+            <select id="categoria_cnh" name="categoria_cnh">
+                <option value="" selected hidden>selecione</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+            </select>
+        </div>
+        <div>
+            <label class="label_dashboard" for="telefone">Telefone para contato:</label> 
+            <input class="input_dashboard" type="tel"name="telefone" id="telefone" placeholder="(11)11111-1111"  >
+        </div>
+        <div>
+            <label class="label_dashboard" for="cep">CEP:</label> 
+            <input class="input_dashboard" type="number"name="cep" id="cep" placeholder="Digite seu CEP, apenas números"  >
+        </div>
+        <label class="label_dashboard" for="Estado">Estado:</label> 
+        <select id="estado" name="estado">
+            <% cidadesEstados.forEach(estado=> { %>
+              <option value="<%= estado.sigla %>">
+                <%= estado.nome %>
+              </option>
+              <% }) %>
+          </select>
+        <label class="label_dashboard" for="cidade">Cidade:</label> 
+        <select id="cidade" name="cidade">
+        </select>
+        <div>
+            <label class="label_dashboard" for="bairro">Bairro:</label> 
+            <input class="input_dashboard" type="text" name="bairro" id="bairro" placeholder="digite seu bairro"  >
+        </div>
+        <div>
+            <label class="label_dashboard" for="logradouro">Logradouro:</label> 
+            <input class="input_dashboard" type="text" name="logradouro" id="logradouro" placeholder="Rua,Avenida..."  >
+        </div>
+        <div>
+            <label class="label_dashboard" for="numero">Número:</label> 
+            <input class="input_dashboard" type="text" name="numero" id="numero"  >
+        </div>
+        <div class="botao_dashboard">
+            <button class="botao_dashboard" type="submit" name="cadastrarCliente">CADASTRAR</button>
+        </div>
+</form>
+</section>
+<script src="/javascript/motoristas.js"></script>
+  <script>
+  iniciarEstadosCidades(<%- JSON.stringify(cidadesEstados) %>);
+  </script>
+  
+<%- include('partials/footer')  %> 
