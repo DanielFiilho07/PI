@@ -19,9 +19,9 @@ body > header {
 .logo-marca:hover {
     background-color: #d3d3d3;
     color: orange;
-    transition: 
-    background-color 0,5s,
-    color 0,5s;
+    transition: "";
+    background-color: 0,5s;
+    color: 0,5s;
 }
 
 .logo-marca {
